@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "CalendarView";
+}
+<!--css for calender-->
+<link href="~/Content/event-calendar-evo/evo-calendar/css/evo-calendar.min.css" rel="stylesheet" />
+<link href="~/Content/event-calendar-evo/evo-calendar/css/evo-calendar.midnight-blue.min.css" rel="stylesheet" />
+
+<link href="~/Content/font-awesome/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/font-awesome/js/all.min.js"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+<style>
+    .center-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .checkboxTbl {
+        width: 50%;
+        margin-top: 0.5rem;
+    }
+    table thead tr th{
+        min-width:10rem;
+    }
+
+    table tbody tr th {
+        min-width: 10rem;
+    }
+
+
+    
+</style>
+
+<div class="container-fluid m-1">
+    <!--Tab View-->
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" onclick="tabFun(this,'calenderViewTab')">
+                    <a class="nav-link active" aria-current="page" href="#">Calender View</a>
+                </li>
+                <li class="nav-item" onclick="tabFun(this,'tableViewTab')">
+                    <a class="nav-link" href="#">Tabular View</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="calenderViewTab" class="mt-1 tab-content">
+        <div id="calendar"></div>
+    </div>
+    <div id="tableViewTab" class="mt-1 tab-content" style="display:none;">
+        <div class="d-flex flex-column bd-highlight mb-3" style="overflow-y:auto">
+            <div class="d-flex justify-content-start">
+                <button class="btn btn-primary m-1" onclick="addRow()"><i class="fa-solid fa-calendar-plus"></i></button>
+                <button class="btn btn-danger m-1" onclick="deleteRow()"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-success m-1" onclick="submit()"><i class="fa-solid fa-floppy-disk"></i></button>
+            </div>
+            <table id="eventTable" class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" class="checkboxTbl" />All </th>
+                        <th>Event Name</th>
+                        <th>Event Type</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                        <td><input type="text" data-attr="EVENT_NAME" class="save form-control" placeholder="Event name" /></td>
+                        <td>
+                            <select class="save form-control" data-attr="TYPE">
+                                <option value='-1'>--SELECT--</option>
+                                <option value='exam'>Exam</option>
+                                <option value='holiday'>Holiday</option>
+                            </select>
+                        </td>
+                        <td><input type="date" data-attr="FROM_DATE" class="save form-control" /></td>
+                        <td><input type="date" data-attr="TO_DATE" class="save form-control" /></td>
+                        <td><textarea data-attr="DESCRIPTION" rows="1" class="save form-control"></textarea></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Event Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Event Name</span>
+                        <input type="text" class="form-control" placeholder="Event name" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Event Type</span>
+                        <select class="form-control">
+                            <option value='-1'>--SELECT--</option>
+                            <option value='exam'>Exam</option>
+                            <option value='holiday'>Holiday</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text">Description</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JQuery-->
+<script src="~/Content/event-calendar-evo/evo-calendar/js/evo-calendar.min.js"></script>
+
+<script>
+    var cal; var myModal;
+    $(() => {
+        initEvent();
+    });
+
+
+
+    function initEvent() {
+        cal = $('#calendar').evoCalendar({
+            format: 'mm/dd/yyyy',
+            theme: 'Midnight Blue',
+        });
+
+        //calneder event
+        $('#calendar').on('selectDate', function (event, newDate, oldDate) {
+            //addEvent()
+            $("#staticBackdrop").modal("show");//for model
+        });
+
+        //checkBox ALL
+        $('#selectAll').change(function () {
+            var isChecked = $(this).prop('checked');
+            // Set the checked state of all checkboxes in the table
+            $('.checkboxTbl').prop('checked', isChecked);
+        });
+    }
+
+    //add event to calender
+    function addEvent(eventList) {
+        cal.evoCalendar('addCalendarEvent', {
+            id: 'kNybja6',
+            name: 'Mom\'s Birthday',
+            description: 'Lorem ipsum dolor sit..',
+            //date: 'Feb 27, 2024',
+            date: '02/27/2024',
+            type: 'acd'
+        });
+        //cal.evoCalendar('addCalendarEvent', eventList);
+    }
+
+    //add Row
+    function addRow() {
+        let row = `<tr>
+                        <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                        <td><input type="text" data-attr="EVENT_NAME" class="save form-control" placeholder="Event name" /></td>
+                        <td>
+                            <select class="save form-control" data-attr="TYPE">
+                                <option value='-1'>--SELECT--</option>
+                                <option value='exam'>Exam</option>
+                                <option value='holiday'>Holiday</option>
+                            </select>
+                        </td>
+                        <td><input type="date" data-attr="FROM_DATE" class="save form-control" /></td>
+                        <td><input type="date" data-attr="TO_DATE" class="save form-control" /></td>
+                        <td><textarea data-attr="DESCRIPTION" rows="1" class="save form-control"></textarea></td>
+                    </tr>`;
+        $('#eventTable tbody').append(row);
+    }
+
+    function deleteRow() {
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            if (!(headerId == 'selectAll')) {
+                $(this).closest('tr').remove();
+            }
+
+        });
+    }
+
+    function submit() {
+        let rowBoj = [];
+
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            let columns = $(this).closest('tr').find('td');
+
+            let obj = {};
+
+            if (!(headerId == 'selectAll')) {
+                columns.each(function () {
+                    let attrName = $(this).find('.save').attr('data-attr');
+                    if (!(attrName == 'checkBox')) {
+                        obj[attrName] = ((attrName == 'TO_DATE') || (attrName == 'FROM_DATE')) ? dateFormater($(this).find('.save').val()) : $(this).find('.save').val();
+                    }
+                });
+                rowBoj.push(obj);
+            }
+        });
+
+        console.log(rowBoj);
+    }
+    //for tab controll
+    function tabFun(e, id) {
+        var tabs = document.querySelectorAll('.nav-tabs .nav-item');
+        tabs.forEach(function (item) {
+            $(item.children).removeClass('active');
+        });
+
+        var tabContain = document.querySelectorAll('.tab-content');
+        tabContain.forEach(function (item) {
+            $(item).hide();
+        });
+
+        $(e.children).addClass('active')
+        $(`#${id}`).show(400);
+    }
+
+    function dateFormater(dt) {
+        //2024-02-29
+        let dateArray = dt.split('-');
+        if (dateArray.length == 3) {
+            return `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+        } else {
+            return '';
+        }
+
+    }
+</script>

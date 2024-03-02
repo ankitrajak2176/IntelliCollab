@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "LogIn";
+}
+<!--rupa work-->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div class="card-body">
+                    <form action="@Url.Action("LogIn","LogIn")" method="post">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        @Html.ActionLink("SignUp", "SignUp", "LogIn", new { }, new { @class = "btn btn-primary mt-1" })
+                                    </div>
+                                </div>
+                                <a href="#" class="nav-link text-primary">forget password</a>
+                            </div>
+                            <div class="col-5">
+                                <img class="img-fluid" src="~/Content/Images/7BZk.gif" />
+                            </div>
+                        </div>
+                        
+                        
+                    </form>
+                </div>
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="card-footer">
+                        <div class="text-danger">@ViewBag.ErrorMessage</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
