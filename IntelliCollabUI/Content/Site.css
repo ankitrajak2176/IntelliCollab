@@ -10,10 +10,10 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select {
     max-width: 280px;
-}
+}*/
 
 .mb-6 {
     margin-bottom: 5rem !important;

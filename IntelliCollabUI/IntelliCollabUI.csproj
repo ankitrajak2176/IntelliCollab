@@ -151,7 +151,10 @@
     <Content Include="Content\font-awesome\sprites\regular.svg" />
     <Content Include="Content\font-awesome\sprites\solid.svg" />
     <Content Include="Content\Images\7BZk.gif" />
+    <Content Include="Content\Images\AI.png" />
+    <Content Include="Content\Images\AI1.png" />
     <Content Include="Content\Images\MITM_LOGO.png" />
+    <Content Include="Content\Images\usrImage.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\event-calendar-evo\img\Thumbs.db" />
@@ -183,9 +186,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChatBotController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\FacultyController.cs" />
+    <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="DataRepo\Personalnfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,7 +215,15 @@
     <Content Include="Script\jquery-3.4.1.min.map" />
     <Content Include="Script\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Login\SignUp.cshtml" />
-    <Content Include="Views\DashBoard\CalendarView.cshtml" />
+    <Content Include="Views\UserManagement\CalendarView.cshtml" />
+    <Content Include="Views\UserManagement\Results.cshtml" />
+    <Content Include="Views\UserManagement\DigitalLibraryBoard.cshtml" />
+    <Content Include="Views\UserManagement\NoticeBoard.cshtml" />
+    <Content Include="Views\UserManagement\Payment.cshtml" />
+    <Content Include="Views\UserManagement\Attendance.cshtml" />
+    <Content Include="Views\Admin\AdminInfo.cshtml" />
+    <Content Include="Views\Faculty\FacultyInfo.cshtml" />
+    <Content Include="Views\Student\StudentInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Guest\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

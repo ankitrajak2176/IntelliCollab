@@ -14,14 +14,15 @@ namespace IntelliCollabUI.Controllers
         // GET: DashBoard
         public ActionResult Index()
         {
-            if (Session["UserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("LogIn", "LogIn");
-            } 
+            //if (Session["UserID"] != null)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("LogIn", "LogIn");
+            //} 
+            return View();
         }
 
         public void DbconnectionDemo()
@@ -44,9 +45,6 @@ namespace IntelliCollabUI.Controllers
             }
         }
 
-        public ActionResult CalendarView()
-        {
-            return View();
-        }
+        
     }
 }
