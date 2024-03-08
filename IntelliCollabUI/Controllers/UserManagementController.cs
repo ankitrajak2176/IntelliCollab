@@ -37,5 +37,10 @@ namespace IntelliCollabUI.Controllers
         {
             return View();
         }
+
+        public ActionResult PersonalInfo()
+        {
+            return View();
+        }
     }
 }

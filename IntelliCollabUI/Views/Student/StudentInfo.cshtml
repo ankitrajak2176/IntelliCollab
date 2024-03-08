@@ -2,6 +2,224 @@
 @{
     ViewBag.Title = "StudentInfo";
 }
+<style>
+    .center-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
 
-<h2>StudentInfo</h2>
+    .checkboxTbl {
+        width: 50%;
+        margin-top: 0.5rem;
+    }
 
+    table thead tr th {
+        min-width: 10rem;
+    }
+
+    table tbody tr th {
+        min-width: 10rem;
+    }
+</style>
+<h2 class="text-center">Student Information</h2>
+<hr />
+<div id="tableViewTab" class="mt-1 tab-content">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12">
+            <div class="d-flex justify-content-start">
+                <button class="btn btn-primary m-1" onclick="addRow()"><i class="fa-solid fa-calendar-plus"></i></button>
+                <button class="btn btn-success m-1" onclick="editRow()"><i class="fa-solid fa-edit"></i></button>
+                <button class="btn btn-danger m-1" onclick="deleteRow()"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-success m-1" onclick="submit()"><i class="fa-solid fa-floppy-disk"></i></button>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12">
+            <button type="button" class="btn btn-primary mt-1 mb-1">
+                Students <span class="badge bg-secondary" id="noOfStd">00004</span>
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            <div class="input-group mb-3">
+                <input type="text" class="save form-control" placeholder="Search by Registration No/Roll No" />
+                <span class="input-group-text btn btn-success" id="basic-addon2"><i class="fa-solid fa-search"></i></span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="row">
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text text-white bg-primary" id="basic-addon1">Branch</span>
+                        <select class="form-select">
+                            <option>ME</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EE</option>
+                            <option>CE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text text-white bg-primary" id="basic-addon1">Session</span>
+                        <select class="form-select">
+                            <option>2020-2024</option>
+                            <option>2021-2025</option>
+                            <option>2022-2026</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text btn btn-success" id="basic-addon2"><i class="fa-solid fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column bd-highlight mb-3" style="overflow-y:auto">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th><input type="checkbox" id="selectAll" class="checkboxTbl" />All </th>
+                    <th>RegNo</th>
+                    <th>Roll No</th>
+                    <th>Branch</th>
+                    <th>Semester</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Fees</th>
+                    <th>Fee Dues</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody id="studentTable">
+                <tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">15111111</div>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const dummyDataSet = [{ RegNo: '', RollNo: 'CSE/20/26L', StudentName: 'Aditya Mahato', Sem: 8, Gen: 'Male', Fee: 25000, FeeDues: 0, Age: '',Session:'2020-2024',Branch:'CSE' },
+        { RegNo: '', RollNo: 'CSE/20/07L', StudentName: 'Ankit Kumar Rajak', Sem: 8, Gen: 'Male', Fee: 25000, FeeDues: 0, Age: '', Branch: 'CSE' },
+        { RegNo: '', RollNo: 'CSE/20/04L', StudentName: 'Kushagra Maity', Sem: 8, Gen: 'Male', Fee: 20000, FeeDues: 5000, Age: '', Branch: 'CSE' },
+        { RegNo: '', RollNo: 'CSE/20/17L', StudentName: 'Rupashree Chatterjee', Sem: 8, Gen: 'Female', Fee: 25000, FeeDues: 0, Age: '', Branch: 'CSE' },
+        { RegNo: '', RollNo: 'CSE/20/20L', StudentName: 'Sanjana Kumari', Sem: 8, Gen: 'Female', Fee: 25000, FeeDues: 0, Age: '', Branch: 'CSE' }];
+
+    $(() => {
+        studentTable();
+        //checkBox ALL
+        $('#selectAll').change(function () {
+            var isChecked = $(this).prop('checked');
+            // Set the checked state of all checkboxes in the table
+            $('.checkboxTbl').prop('checked', isChecked);
+        });
+    });
+
+    function studentTable() {
+        $('#noOfStd').text(dummyDataSet.length);
+        let row = ``;
+        $.each(dummyDataSet, function (i,e) {
+            row += `<tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td><input type='text' class='form-control edit save' data-attr='RegNo' disabled value='${e.RegNo}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='RollNo' disabled value='${e.RollNo}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Branch' disabled value='${e.Branch}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Sem' disabled value='${e.Sem}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='StudentName' disabled value='${e.StudentName}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Gen' disabled value='${e.Gen}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Fee' disabled value='${e.Fee}'/> </td>
+                    <td><input type='text' class='form-control edit save' data-attr='FeeDues' disabled value='${e.FeeDues}'/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Age' disabled value='${e.Age}'/></td>
+                    </tr>`;
+        });
+        $('#studentTable').html(row);
+    }
+
+    //add Row
+    function addRow() {
+        row = `<tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td><input type='text' class='form-control edit save' data-attr='RegNo' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='RollNo' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Branch' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Sem' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='StudentName' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Gen' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Fee' disabled value=''/> </td>
+                    <td><input type='text' class='form-control edit save' data-attr='FeeDues' disabled value=''/></td>
+                    <td><input type='text' class='form-control edit save' data-attr='Age' disabled value=''/></td>
+                    </tr>`;
+        $('#studentTable').append(row);
+    }
+
+    function deleteRow() {
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            if (!(headerId == 'selectAll')) {
+                $(this).closest('tr').remove();
+            }
+
+        });
+    }
+    let editFlag = false;
+    function editRow() {
+        if (editFlag) {
+            $('.edit').prop('disabled', true);
+            editFlag = false;
+        } else {
+            $('.edit').prop('disabled', false);
+            editFlag = true;
+        }
+    }
+    function submit() {
+        let rowBoj = [];
+
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            let columns = $(this).closest('tr').find('td');
+
+            let obj = {};
+
+            if (!(headerId == 'selectAll')) {
+                columns.each(function () {
+                    let attrName = $(this).find('.save').attr('data-attr');
+                    if (!(attrName == 'checkBox')) {
+                        obj[attrName] = $(this).find('.save').val();
+                    }
+                    if ($(this).find('.save').val() == undefined) {
+                        var a = '';
+                    }
+                });
+                rowBoj.push(obj);
+            }
+        });
+
+        console.log(rowBoj);
+    }
+</script>

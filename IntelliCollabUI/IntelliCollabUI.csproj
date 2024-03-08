@@ -179,6 +179,7 @@
     <Content Include="Script\jquery-3.4.1.slim.min.js" />
     <Content Include="Script\modernizr-2.8.3.js" />
     <Content Include="Script\popper.min.js" />
+    <Content Include="Script\_DefaultDataSet.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Registration.cshtml" />
     <Content Include="Views\DashBoard\Index.cshtml" />
@@ -224,6 +225,7 @@
     <Content Include="Views\Admin\AdminInfo.cshtml" />
     <Content Include="Views\Faculty\FacultyInfo.cshtml" />
     <Content Include="Views\Student\StudentInfo.cshtml" />
+    <Content Include="Views\UserManagement\PersonalInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
