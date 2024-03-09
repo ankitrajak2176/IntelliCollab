@@ -19,7 +19,7 @@
     {
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#"><span class="h1 text-light">I</span><span>ntellcolab</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +29,34 @@
                             @Html.ActionLink("Home", "Index", "DashBoard", new { }, new { @class = "nav-link active" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Assistance", "Bot", "ChatBot", new { }, new { @class = "nav-link" })
+                            @Html.ActionLink("Personal Information", "PersonalInfo", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Messenger", "Bot", "ChatBot", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Faculty", "FacultyInfo", "Faculty", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Student", "StudentInfo", "Student", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Digital Library", "DigitalLibraryBoard", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Attendance", "Attendance", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Events", "CalendarView", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Notice Board", "NoticeBoard", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Payment", "Payment", "UserManagement", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Results", "Results", "UserManagement", new { }, new { @class = "nav-link" })
                         </li>
                     </ul>
 

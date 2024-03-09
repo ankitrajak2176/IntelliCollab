@@ -2,6 +2,219 @@
 @{
     ViewBag.Title = "FacultyInfo";
 }
+<style>
+    .center-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
 
-<h2>FacultyInfo</h2>
+    .checkboxTbl {
+        width: 50%;
+        margin-top: 0.5rem;
+    }
+
+    table thead tr th {
+        min-width: 10rem;
+    }
+
+    table tbody tr th {
+        min-width: 10rem;
+    }
+</style>
+<h2 class="text-center">FacultyInfo</h2>
+<hr />
+<div id="tableViewTab" class="mt-1 tab-content">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="d-flex justify-content-start">
+                <button class="btn btn-primary m-1" onclick="addRow()"><i class="fa-solid fa-calendar-plus"></i></button>
+                <button class="btn btn-success m-1" onclick="editRow()"><i class="fa-solid fa-edit"></i></button>
+                <button class="btn btn-danger m-1" onclick="deleteRow()"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-success m-1" onclick="submit()"><i class="fa-solid fa-floppy-disk"></i></button>
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <button type="button" class="btn btn-primary mt-1 mb-1">
+                Faculty <span class="badge bg-secondary" id="noOfFlty">00004</span>
+            </button>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search by Faculty Id" />
+                <span class="input-group-text btn btn-success" id="basic-addon2"><i class="fa-solid fa-search"></i></span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text text-white bg-primary" id="basic-addon1">Branch</span>
+                        <select class="form-select">
+                            <option>ME</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EE</option>
+                            <option>CE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text text-white bg-primary" id="basic-addon1">Session</span>
+                        <select class="form-select">
+                            <option>2020-2024</option>
+                            <option>2021-2025</option>
+                            <option>2022-2026</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class='col-sm-12 col-md-4 col-lg-4'>
+                    <div class="input-group mb-3 me-1">
+                        <span class="input-group-text btn btn-success" id="basic-addon2"><i class="fa-solid fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column bd-highlight mb-3" style="overflow-y:auto">
+        <table id="tblFaculty" class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th><input type="checkbox" id="selectAll" class="checkboxTbl" />All </th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Branch</th>
+                    <th>Semester</th>
+                    <th>Subject</th>
+                    <th>Phone No</th>
+                    <th>Gender</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody id="facultyTable">
+                <tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const dummyDataSet = [
+        { ID: 'CSE/20/26L', TeacherName: 'Aditya Mahato', Sem: 8, Gen: 'Male', PhoneNo: '', Session: '2020-2024', Branch: 'CSE', SubjectId:'',Msg:true },
+        { ID: 'CSE/20/07L', TeacherName: 'Ankit Kumar ', Sem: 8, Gen: 'Male', PhoneNo: '', Branch: 'CSE',SubjectId:'',Msg:true },
+        { ID: 'CSE/20/04L', TeacherName: 'Kushagra Maity', Sem: 8, Gen: 'Male', PhoneNo: '', Branch: 'CSE', SubjectId:'',Msg:true },
+        { ID: 'CSE/20/17L', TeacherName: 'Rupashree', Sem: 8, Gen: 'Female', PhoneNo: '', Branch: 'CSE', SubjectId:'',Msg:true },
+        { ID: 'CSE/20/20L', TeacherName: 'Sanjana Kumari', Sem: 8, Gen: 'Female', PhoneNo: '', Branch: 'CSE',SubjectId:'',Msg:true }];
+
+    $(() => {
+        facultyTable();
+
+        //checkBox ALL
+        $('#selectAll').change(function () {
+            var isChecked = $(this).prop('checked');
+            // Set the checked state of all checkboxes in the table
+            $('.checkboxTbl').prop('checked', isChecked);
+        });
+        
+    });
+
+    function facultyTable() {
+        $('#noOfFlty').text(dummyDataSet.length);
+        let row = ``;
+        $.each(dummyDataSet, function (i, e) {
+            row += `<tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td><input data-attr='ID' class='form-control edit save' value='${e.ID}' disabled/></td>
+                    <td><input data-attr='TeacherName' class='form-control edit save' value='${e.TeacherName}' disabled/></td>
+                    <td><input data-attr='Branch' class='form-control edit save' value='${e.Branch}' disabled/></td>
+                    <td><input data-attr='Sem' class='form-control edit save' value='${e.Sem}' disabled/></td>
+                    <td><input data-attr='SubjectId' class='form-control edit save' value='${e.SubjectId}' disabled/></td>
+                    <td><input data-attr='PhoneNo' class='form-control edit save' value='${e.PhoneNo}' disabled/></td>
+                    <td><input data-attr='Gen' class='form-control edit save' value='${e.Gen}' disabled/></td>
+                    <td><button data-attr='Msg' class='btn btn-success save'><i class="fa fa-message"></i></button></td>
+                    </tr>`;
+        });
+        $('#facultyTable').html(row);
+    }
+
+    //add Row
+    function addRow() {
+        let row = `<tr>
+                    <td class="center-checkbox"><input type="checkbox" data-attr="checkBox" class="save checkboxTbl form-check" /></td>
+                    <td><input data-attr='ID' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='TeacherName' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='Branch' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='Sem' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='SubjectId' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='PhoneNo' class='form-control edit save' value=''/></td>
+                    <td><input data-attr='Gen' class='form-control edit save' value=''/></td>
+                    <td><button data-attr='Msg' class='btn btn-success'><i class="fa fa-message"></i></button></td>
+                    </tr>`;
+        $('#facultyTable').append(row);
+    }
+
+    function deleteRow() {
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            if (!(headerId == 'selectAll')) {
+                $(this).closest('tr').remove();
+            }
+
+        });
+    }
+    let editFlag = false;
+    function editRow() {
+        if (editFlag) {
+            $('.edit').prop('disabled', true);
+            editFlag = false;
+        } else {
+            $('.edit').prop('disabled', false);
+            editFlag = true;
+        }
+    }
+    function submit() {
+        let rowBoj = [];
+
+        var checkedCheckboxes = $('.checkboxTbl:checked');
+
+        checkedCheckboxes.each(function () {
+
+            var headerId = $(this).attr('id');
+            let columns = $(this).closest('tr').find('td');
+
+            let obj = {};
+
+            if (!(headerId == 'selectAll')) {
+                columns.each(function () {
+                    let attrName = $(this).find('.save').attr('data-attr');
+                    if (!(attrName == 'checkBox')) {
+                        obj[attrName] = $(this).find('.save').val();
+                    }
+                    if ($(this).find('.save').val() == undefined) {
+                        var a = '';
+                    }
+                });
+                rowBoj.push(obj);
+            }
+        });
+
+        console.log(rowBoj);
+    }
+</script>
 
