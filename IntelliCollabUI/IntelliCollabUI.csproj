@@ -95,6 +95,7 @@
     <Content Include="Content\bootstrap5.2.3\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap5.2.3\js\bootstrap.js" />
     <Content Include="Content\bootstrap5.2.3\js\bootstrap.min.js" />
+    <Content Include="Content\canvasjs\canvasjs.min.js" />
     <Content Include="Content\event-calendar-evo\.gitignore" />
     <Content Include="Content\event-calendar-evo\demo\demo.css" />
     <Content Include="Content\event-calendar-evo\demo\demo.js" />

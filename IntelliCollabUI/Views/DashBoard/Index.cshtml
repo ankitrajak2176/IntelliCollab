@@ -2,6 +2,243 @@
 @{
     ViewBag.Title = "Index";
 }
-<!--Aditya works-->
-<h2>DashBoard</h2>
+<style>
+    .small-box {
+        border-radius: 2px;
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    }
 
+        .small-box > .inner {
+            padding: 10px;
+        }
+
+        .small-box .icon {
+            -webkit-transition: all .3s linear;
+            -o-transition: all .3s linear;
+            transition: all .3s linear;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            z-index: 0;
+            font-size: 90px;
+            color: rgba(0, 0, 0, 0.15);
+        }
+
+        .small-box > .small-box-footer {
+            position: relative;
+            text-align: center;
+            padding: 3px 0;
+            color: #fff;
+            color: rgba(255, 255, 255, 0.8);
+            display: block;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+    .bg-aqua {
+        background-color: #00c0ef !important;
+    }
+    .product-img .product-info{
+        float:left;
+    }
+    .image-box {
+        font-size: 3rem;
+        padding-right: 1.5rem;
+    }
+    .text-sky {
+        color: #3c8dbc;
+    }
+</style>
+<div class="row">
+    <div class="col-3">
+        <div class="small-box bg-aqua">
+            <div class="inner text-white">
+                <p>Total Current Student</p>
+                <h3>150000</h3>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="small-box bg-aqua">
+            <div class="inner text-white">
+                <p>Total Current Faculty</p>
+                <h3>150</h3>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="small-box bg-aqua">
+            <div class="inner text-white">
+                <p>Total Current Branch</p>
+                <h3>6</h3>
+            </div>
+            <div class="icon">
+                <i class="fa fa-code-branch"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="small-box bg-aqua">
+            <div class="inner text-white">
+                <p>Others options</p>
+                <h3>Attendance/Fees</h3>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-clipboard-user"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-1 mb-3">
+                    <div class="card-body">
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-12 col-sm-12  ">
+                        <div class="small-box bg-warning">
+                            <div class="inner text-white text-center">
+                                <h5>All Forms</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="small-box bg-warning">
+                            <div class="inner text-white text-center">
+                                <h5>Library</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="small-box bg-warning">
+                            <div class="inner text-white text-center">
+                                <h5>Result</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="small-box bg-warning">
+                            <div class="inner text-white text-center">
+                                <h5>Event Calender</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="small-box bg-warning">
+                            <div class="inner text-white text-center">
+                                <h5>AI</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        Notice Board
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--faculty List-->
+            <div class="col-12 mt-2">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        Faculty List
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="image-box float-start">
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <div class="inner float-start">
+                                <h5 class="text-sky">Somrita Jana</h5>
+                                <p>Computer Science Engineering</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="image-box float-start">
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <div class="inner float-start">
+                                <h5 class="text-sky">Somrita Jana</h5>
+                                <p>Computer Science Engineering</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="image-box float-start">
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <div class="inner float-start">
+                                <h5 class="text-sky">Somrita Jana</h5>
+                                <p>Computer Science Engineering</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(() => {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title: {
+                text: "Overall Performance"
+            },
+            axisY: {
+                title: ""
+            },
+            data: [{
+                type: "column",
+                showInLegend: false,
+                name:"",
+                legendText: "",
+                dataPoints: [
+                    { y: 95, label: "CS" },
+                    { y: 88, label: "ME" },
+                    { y: 70, label: "EE" },
+                    { y: 82, label: "ECE" },
+                    { y: 90, label: "CE" }
+                ]
+            }]
+        });
+        chart.render();
+    });
+
+
+</script>
