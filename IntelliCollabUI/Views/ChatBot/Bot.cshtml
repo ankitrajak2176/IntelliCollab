@@ -4,212 +4,221 @@
 }
 
 <style>
-    .userList {
-        /*min-height: 50vh;
-        min-width: 20rem;
-        overflow-y:auto;
-        height:80vh;*/
-    }
+    
     .userContainer {
         min-height: 50vh;
         min-width: 20rem;
         overflow-y: auto;
         height: 68vh;
     }
+
     .messageContainer {
         width: 100%;
     }
 
     .bot-msg {
-        height: 67vh;
+        height: 54vh;
+        color:white;
     }
+
     .cursor-pointer{
         cursor:pointer!important;
     }
-</style>
 
-<div class="d-flex justify-content-start">
-    <div class="userList border border-1">
-        <div class="MessageHeader">
-            <div class="row">
-                <div class="col-12 fw-bold fs-4">Messages</div>
-                <div class="col-12 fs-6 ">Faculties</div>
-            </div>
-        </div>
-        <ul class="list-group userContainer">
-            @*<li class="list-group-item">
+    .list-group > .list-group-item{
+        background-color:transparent;
+        color:white;
+        border-bottom:1px solid white;
+    }
+
+</style>
+<div style="overflow-y:auto;overflow-x:hidden;height:81vh;padding-bottom:2rem;">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="MessageHeader dark-theme ps-2 border border-1">
                 <div class="row">
                     <div class="col-12 fw-bold fs-4">Messages</div>
                     <div class="col-12 fs-6 ">Faculties</div>
                 </div>
-            </li>*@
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/AI1.png" class="rounded-circle img-fluid" width="50" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                AI Assistance
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">How may i assist you?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">0</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                Ankit
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                Kushagra
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                Aditya
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                Sanjana
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="d-flex bd-highlight cursor-pointer">
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight text-wrap">
-                        <div class="row">
-                            <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
-                                Rupashree
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight ">
-                        <div class="row">
-                            <div class="col-12 text-sm-center fs-6">10:22 PM </div>
-                            <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="messageContainer border">
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="btn btn-action position-relative">
-                    UserName
-                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                        <span class="visually-hidden">New alerts</span>
-                    </span>
-                </a>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search for people" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
-        </nav>
-        <div class="bot-msg p-1">
-            Hello! How can I assist you today?
+            <ul class="list-group userContainer rounded-0 border border-1">
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/AI1.png" class="rounded-circle img-fluid" width="50" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    AI Assistance
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">How may i assist you?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    Ankit
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    Kushagra
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    Aditya
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    Sanjana
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex bd-highlight cursor-pointer">
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <img src="~/Content/Images/usrImage.png" class="rounded-circle img-fluid" width="35" height="20" alt="Pic" />
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight text-wrap">
+                            <div class="row">
+                                <div class="col-12 text-sm-start fs-5 fw-bold position-relative">
+                                    Rupashree
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="col-12 text-sm-start fs-6 fw-light">Are you busy?</div>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight ">
+                            <div class="row">
+                                <div class="col-12 text-sm-center fs-6">10:22 PM </div>
+                                <div class="col-12 text-sm-center fs-6"><span class="badge bg-secondary rounded-circle">4</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="input-group ps-2 pe-2">
-            <input type="text" class="form-control" placeholder="Type your message...">
-            <span class="input-group-text" id="basic-addon2">Send <i class="fa-solid fa-paper-plane"></i></span>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="card rounded-0 border border-1 bg-transparent">
+                <div class="card-header dark-theme rounded-0">
+                    <nav class="navbar navbar-light dark-theme navbar-dark">
+                        <div class="container-fluid">
+                            <a class="btn btn-action position-relative text-white">
+                                UserName
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            </a>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search for people" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+                <div class="card-body">
+                    <div class="bot-msg p-1">
+                        AI:Hello! How can I assist you today?
+                    </div>
+                </div>
+                <div class="card-footer dark-theme rounded-0">
+                    <div class="input-group ps-2 pe-2">
+                        <input type="text" class="form-control" placeholder="Type your message...">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-paper-plane"></i></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
